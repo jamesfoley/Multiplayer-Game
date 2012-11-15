@@ -672,6 +672,7 @@ jaws.Assets = function Assets() {
 
   this.getPostfix = function(src) {
     postfix_regexp = /\.([a-zA-Z0-9]+)/;
+    console.log(src);
     return postfix_regexp.exec(src)[1]
   }
 
