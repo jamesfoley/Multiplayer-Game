@@ -38,7 +38,7 @@ function Game(){
         //	Create the player
         player = new jaws.Sprite({x:10, y:10, scale: 2, anchor: "center"});
 
-		//	Create player animation
+		/*//	Create player animation
 		var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
         player.anim_default = player_anim.slice(0, 0);
         player.anim_up = player_anim.slice(1, 4);
@@ -47,7 +47,7 @@ function Game(){
         player.anim_right = player_anim.slice(13, 16);
 
         //	Set the player to idle
-        player.setImage(player.anim_default.next());
+        player.setImage(player.anim_default.next());*/
 
         jaws.preventDefaultKeys(["up", "down", "left", "right", "space"]);
 
@@ -56,11 +56,11 @@ function Game(){
 	//	Called each game tick with your specified FPS. Logic goes here.
 	this.update = function() {
 
-		//	Player movement keys
+		/*//	Player movement keys
 		if(jaws.pressed("left"))  { player.move(-2,0);  player.setImage(player.anim_left.next()) }
         if(jaws.pressed("right")) { player.move(2,0);   player.setImage(player.anim_right.next()) }
         if(jaws.pressed("up"))    { player.move(0, -2); player.setImage(player.anim_up.next()) }
-        if(jaws.pressed("down"))  { player.move(0, 2);  player.setImage(player.anim_down.next()) }
+        if(jaws.pressed("down"))  { player.move(0, 2);  player.setImage(player.anim_down.next()) }*/
 
         //	Make sure we center the view around the player
         viewport.centerAround(player);
