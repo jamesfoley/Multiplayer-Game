@@ -42,9 +42,9 @@ function Game(){
 		var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
         player.anim_default = player_anim.slice(0, 1);
         player.anim_up = player_anim.slice(1, 4);
-        player.anim_down = player_anim.slice(5, 8);
-        player.anim_left = player_anim.slice(9, 12);
-        player.anim_right = player_anim.slice(13, 16);
+        player.anim_down = player_anim.slice(4, 8);
+        player.anim_left = player_anim.slice(8, 12);
+        player.anim_right = player_anim.slice(12, 16);
 
         //	Set the player to idle
         player.setImage(player.anim_default.next());
