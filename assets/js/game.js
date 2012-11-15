@@ -18,7 +18,7 @@ function Game(){
 		tile_map = new jaws.TileMap({size: [width, height], cell_size: [32,32]});
 
 		//	Create the grass
-		var grass;
+		var grass = new jaws.SpriteList();
 
 		//	Loop over the every cell in the width
 		for(var i = 0; i < width; i++) {
