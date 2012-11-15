@@ -40,7 +40,7 @@ function Game(){
 
 		//	Create player animation
 		var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
-        /player.anim_default = player_anim.slice(0, 0);
+        /*player.anim_default = player_anim.slice(0, 0);
         player.anim_up = player_anim.slice(1, 4);
         player.anim_down = player_anim.slice(5, 8);
         player.anim_left = player_anim.slice(9, 12);
