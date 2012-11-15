@@ -38,10 +38,6 @@ function Game(){
         //	Create the player
         player = new jaws.Sprite({x:10, y:10, scale: 2, anchor: "center"});
 
-        //	Called on player move
-		player.move = function(x, y) {
-		}
-
 		//	Create player animation
 		var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
         player.anim_default = player_anim.slice(0, 0);
@@ -65,6 +61,9 @@ function Game(){
         if(jaws.pressed("right")) { player.move(2,0);   player.setImage(player.anim_right.next()) }
         if(jaws.pressed("up"))    { player.move(0, -2); player.setImage(player.anim_up.next()) }
         if(jaws.pressed("down"))  { player.move(0, 2);  player.setImage(player.anim_down.next()) }
+
+        //	Make sure we center the view around the player
+        viewport.centerAround(player);
 
 	}
 
