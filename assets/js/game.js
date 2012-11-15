@@ -6,6 +6,7 @@ function Game(){
 	var height = 700;
 	var viewport;
 	var tile_map;
+	var player;
 
 	//	Called once when a game state is activated. Use it for one-time setup code.
 	this.setup = function() {
@@ -34,10 +35,38 @@ function Game(){
         //	Shove the grass into the tilemap
         tile_map.push(grass);
 
+        //	Create the player
+        player = new jaws.Sprite({x:10, y:10, scale: 2, anchor: "center"});
+
+        //	Called on player move
+		player.move = function(x, y) {
+		}
+
+		//	Create player animation
+		var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
+        player.anim_default = anim.slice(0, 0);
+        player.anim_up = anim.slice(1, 4);
+        player.anim_down = anim.slice(5, 8);
+        player.anim_left = anim.slice(9, 12);
+        player.anim_right = anim.slice(13, 16);
+
+        //	Set the player to idle
+        player.setImage(player.anim_default.next());
+
+        jaws.context.mozImageSmoothingEnabled = false;
+        jaws.preventDefaultKeys(["up", "down", "left", "right", "space"]);
+
 	}
 
 	//	Called each game tick with your specified FPS. Logic goes here.
 	this.update = function() {
+
+		//	Player movement keys
+		if(jaws.pressed("left"))  { player.move(-2,0);  player.setImage(player.anim_left.next()) }
+        if(jaws.pressed("right")) { player.move(2,0);   player.setImage(player.anim_right.next()) }
+        if(jaws.pressed("up"))    { player.move(0, -2); player.setImage(player.anim_up.next()) }
+        if(jaws.pressed("down"))  { player.move(0, 2);  player.setImage(player.anim_down.next()) }
+
 	}
 
 	//	Directly after each update draw() will be called. Put all your on-screen operations here.
@@ -48,6 +77,9 @@ function Game(){
 
     	//	Draw the tilemap
     	viewport.drawTileMap(tile_map);
+
+    	//	Draw the player
+    	viewport.draw(player);
 
     }
 
