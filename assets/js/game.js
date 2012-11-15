@@ -3,7 +3,7 @@ function Game(){
 
 	//	Define game variables
 	var width = 620;
-	var vheight = 620;
+	var height = 620;
 	var viewport;
 	var tile_map;
 
