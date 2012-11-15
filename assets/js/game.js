@@ -57,10 +57,10 @@ function Game(){
 	this.update = function() {
 
 		//	Player movement keys
-		if(jaws.pressed("left"))  { player.move(-2,0);  player.setImage(player.anim_left.next()) }
-        if(jaws.pressed("right")) { player.move(2,0);   player.setImage(player.anim_right.next()) }
-        if(jaws.pressed("up"))    { player.move(0, -2); player.setImage(player.anim_up.next()) }
-        if(jaws.pressed("down"))  { player.move(0, 2);  player.setImage(player.anim_down.next()) }
+		if(jaws.pressed("left"))  { player.move(-1,0);  player.setImage(player.anim_left.next()) }
+        if(jaws.pressed("right")) { player.move(1,0);   player.setImage(player.anim_right.next()) }
+        if(jaws.pressed("up"))    { player.move(0, -1); player.setImage(player.anim_up.next()) }
+        if(jaws.pressed("down"))  { player.move(0, 1);  player.setImage(player.anim_down.next()) }
 
         //	Make sure we center the view around the player
         viewport.centerAround(player);
