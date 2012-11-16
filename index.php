@@ -31,11 +31,24 @@
 
 			</div>
 
-			<hr />
+			<div class="row">
 
-			<footer>
-				<p>James Foley - jfoley.co.uk</p>
-			</footer>
+				<div class="span8 offset2">
+					<input type="text" />
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="span8 offset2">
+					<hr />
+					<p>James Foley - jfoley.co.uk</p>
+				</div>
+
+			</div>
+
+			
 
 		</div>
 

@@ -49,7 +49,7 @@ function Game(){
         //	Set the player to idle
         player.setImage(player.anim_default.next());
 
-        jaws.preventDefaultKeys(["up", "down", "left", "right"]);
+        //jaws.preventDefaultKeys(["w", "down", "left", "right"]);
 
 	}
 
