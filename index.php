@@ -26,6 +26,14 @@
 			<div class="row">
 
 				<div class="span8 offset2">
+					<h1>James' Game</h1>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="span8 offset2">
 					<canvas width="620" height="349"></canvas>
 				</div>
 
@@ -34,7 +42,7 @@
 			<div class="row">
 
 				<div class="span8 offset2">
-					<textarea rows="3" class="span8"></textarea>
+					<textarea rows="3" class="span8 game_log" readonly="readonly"></textarea>
 				</div>
 
 			</div>
