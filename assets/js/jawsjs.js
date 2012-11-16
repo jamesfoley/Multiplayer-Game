@@ -183,7 +183,7 @@ jaws.start = function(game_state, options,game_state_setup_options) {
       jaws.context.fillRect(0, 0, jaws.width, jaws.height);
       jaws.context.textAlign  = "center"
       jaws.context.fillStyle  = "white"
-      jaws.context.font       = "15px Calibri";
+      jaws.context.font       = "15px Arial";
       jaws.context.fillText("Loading", jaws.width/2, jaws.height/2-30);
       jaws.context.font       = "bold 30px terminal";
       jaws.context.fillText(percent_done + "%", jaws.width/2, jaws.height/2);
