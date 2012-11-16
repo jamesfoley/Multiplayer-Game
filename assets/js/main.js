@@ -11,5 +11,5 @@ jaws.onload = function() {
 	]);
 
 	//	Start the game.
-	jaws.start(Game);
+	jaws.start(Game, {loading_screen:false});
 }
