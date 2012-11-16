@@ -49,7 +49,7 @@ function Game(){
         //	Set the player to idle
         player.setImage(player.anim_default.next());
 
-        //jaws.preventDefaultKeys(["w", "down", "left", "right"]);
+        jaws.preventDefaultKeys(["up", "down", "left", "right"]);
 
 	}
 
@@ -57,10 +57,10 @@ function Game(){
 	this.update = function() {
 
 		//	Player movement keys
-		if(jaws.pressed("a"))  { player.move(-1.5,0);  player.setImage(player.anim_left.next()) }
-        if(jaws.pressed("d")) { player.move(1.5,0);   player.setImage(player.anim_right.next()) }
-        if(jaws.pressed("w"))    { player.move(0, -1.5); player.setImage(player.anim_up.next()) }
-        if(jaws.pressed("s"))  { player.move(0, 1.5);  player.setImage(player.anim_down.next()) }
+		if(jaws.pressed("left"))  { player.move(-1.5,0);  player.setImage(player.anim_left.next()) }
+        if(jaws.pressed("right")) { player.move(1.5,0);   player.setImage(player.anim_right.next()) }
+        if(jaws.pressed("up"))    { player.move(0, -1.5); player.setImage(player.anim_up.next()) }
+        if(jaws.pressed("down"))  { player.move(0, 1.5);  player.setImage(player.anim_down.next()) }
 
         //	Make sure we center the view around the player
         viewport.centerAround(player);
