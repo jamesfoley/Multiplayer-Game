@@ -34,7 +34,7 @@
 			<div class="row">
 
 				<div class="span8 offset2">
-					<textarea rows="3" style="span8"></textarea>
+					<textarea rows="3" class="span8"></textarea>
 				</div>
 
 			</div>
@@ -49,7 +49,6 @@
 			</div>
 
 			
-
 		</div>
 
 	</body>
