@@ -67,38 +67,50 @@ function Game(){
 	//	Hmmm, need to find out how to detect the player X and Y
 	if(jaws.pressed("left"))  { 
 		player.move(-(speed),0); 
-	
-		collision_det(player.x, player.y, speed);
+		
+		var player_coords = border_collision_det(player.x, player.y, speed);
+
+		if(player_coords > player.x)
+			player.x = (player.x + (speed * 2));
 
 		player.setImage(player.anim_left.next());
-		log('x: ' + player.x + ', y: ' + player.y);
+
 	}
 
         if(jaws.pressed("right")) { 
-		player.move(speed,0);   
+		player.move(speed, 0);   
 
-		collision_det(player.x, player.y, speed);
+		var player_coords = border_collision_det(player.x, player.y, speed);
+
+		if(player_coords < player.x)
+			player.x = (player.x - (speed * 2));
 
 		player.setImage(player.anim_right.next());
-		log('x: ' + player.x + ', y: ' + player.y);
+
 	}
 
         if(jaws.pressed("up"))    { 
-		player.move(0, -(speed); 
+		player.move(0, -(speed)); 
 
-		collision_det(player.x, player.y, speed);
+		var player_coords = border_collision_det(player.x, player.y, speed);
+
+		if(player_coords > player.y)
+			player.y = (player.y + (speed * 2));
 
 		player.setImage(player.anim_up.next());
-		log('x: ' + player.x + ', y: ' + player.y);
+
 	}
 
         if(jaws.pressed("down"))  {
 		player.move(0, speed);  
+
+		var player_coords = border_collision_det(player.x, player.y, speed);
 		
-		collision_det(player.x, player.y, speed);
+		if(player_coords < player.y)
+			player.y = (player.y - (speed * 2));
 
 		player.setImage(player.anim_down.next());
-		log('x: ' + player.x + ', y: ' + player.y);
+
 	}
 
         //	Make sure we center the view around the player
@@ -122,27 +134,29 @@ function Game(){
 
 }
 
-function collision_det(x, y, speed) {
+function border_collision_det(x, y, speed) {
 	
 	// Little bit'o collision detection for borders
-	if(x < 0 && y > 0) {
-		player.move(x + speed, y);
-	} elseif(x < 0 && y < 0)
-		player.move(x + speed, y + speed);
-	} elseif(x > 668 && y > 668) {
-		player.move(668, 668);
-	} elseif(x > 668 && y < 668) {
-		player.move(x - speed, y);
-	} elseif(x < 668 && y > 668) {
-		player.move(x, y - speed);
+	if(x < 16) {
+		x = x + speed;
+		return x;
+	} else if(y < 16) {
+		y = y + speed;
+		return y;
+	} else if(x > 684) {
+		x = x - speed;
+		return x;
+	} else if(y > 684) {
+		y = y - speed;
+		return y;
 	}
 
 }
 
 function log(message) {
 	
-	var text = this.findElementByClass('game_log');
+	//var text = this.findElementByClass('game_log');
 
-	text.append(message);
+	//text.append(message);
 
 }
