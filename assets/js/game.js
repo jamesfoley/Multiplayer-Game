@@ -68,7 +68,7 @@ function Game(){
 	if(jaws.pressed("left"))  { 
 		player.move(-(speed),0); 
 	
-		collision_det();
+		collision_det(player.x, player.y, speed);
 
 		player.setImage(player.anim_left.next()) 
 	}
@@ -76,7 +76,7 @@ function Game(){
         if(jaws.pressed("right")) { 
 		player.move(speed,0);   
 
-		collision_det();
+		collision_det(player.x, player.y, speed);
 
 		player.setImage(player.anim_right.next()) 
 	}
@@ -84,7 +84,7 @@ function Game(){
         if(jaws.pressed("up"))    { 
 		player.move(0, -(speed); 
 
-		collision_det();
+		collision_det(player.x, player.y, speed);
 
 		player.setImage(player.anim_up.next()) 
 	}
@@ -92,7 +92,7 @@ function Game(){
         if(jaws.pressed("down"))  {
 		player.move(0, speed);  
 		
-		collision_det();
+		collision_det(player.x, player.y, speed);
 
 		player.setImage(player.anim_down.next()) 
 	}
