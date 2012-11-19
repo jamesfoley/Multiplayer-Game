@@ -80,7 +80,7 @@ function Game(){
         if(jaws.pressed("right")) { 
 		player.move(speed, 0);   
 
-		var player_coords = border_collision_det(player.x, player.y, speed);
+		var player_coords = border_collision_det(player.x, player.y, width*32, height*32, speed);
 
 		if(player_coords < player.x)
 			player.x = (player.x - (speed * 2));
@@ -92,7 +92,7 @@ function Game(){
         if(jaws.pressed("up"))    { 
 		player.move(0, -(speed)); 
 
-		var player_coords = border_collision_det(player.x, player.y, speed);
+		var player_coords = border_collision_det(player.x, player.y, width*32, height*32, speed);
 
 		if(player_coords > player.y)
 			player.y = (player.y + (speed * 2));
@@ -104,7 +104,7 @@ function Game(){
         if(jaws.pressed("down"))  {
 		player.move(0, speed);  
 
-		var player_coords = border_collision_det(player.x, player.y, speed);
+		var player_coords = border_collision_det(player.x, player.y, width*32, height*32, speed);
 		
 		if(player_coords < player.y)
 			player.y = (player.y - (speed * 2));
@@ -134,7 +134,7 @@ function Game(){
 
 }
 
-function border_collision_det(x, y, speed) {
+function border_collision_det(x, y, max_x, max_y, speed) {
 	
 	// Little bit'o collision detection for borders
 	if(x < 16) {
@@ -143,10 +143,10 @@ function border_collision_det(x, y, speed) {
 	} else if(y < 16) {
 		y = y + speed;
 		return y;
-	} else if(x > 684) {
+	} else if(x > (max_x - 16)) {
 		x = x - speed;
 		return x;
-	} else if(y > 684) {
+	} else if(y > (max_y - 16)) {
 		y = y - speed;
 		return y;
 	}

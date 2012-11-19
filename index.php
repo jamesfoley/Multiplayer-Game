@@ -10,12 +10,12 @@
 
 		<!-- Javascript - I'm putting this here because I can -->
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<script src="/assets/js/bootstrap.js"></script>
-		<script src="/assets/js/jawsjs.js"></script>
+		<script src="assets/js/bootstrap.js"></script>
+		<script src="assets/js/jawsjs.js"></script>
 
 		<!-- Game scripts -->
-		<script src="/assets/js/game.js"></script>
-		<script src="/assets/js/main.js"></script>
+		<script src="assets/js/game.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</head>
 
