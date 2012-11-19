@@ -37,17 +37,18 @@ function Game(){
         tile_map.push(grass);
 
         //	Create the player
-        player = new jaws.Sprite({x:10, y:10, scale: 1, anchor: "center"});
+	//	Defaulting the player in by 32 pixels, so they're not outside the viewport
+        player = new jaws.Sprite({x:32, y:32, scale: 1, anchor: "center"});
 
 	//	Create player animation
 	var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
         
 	// 	Actual player animation
-	player.anim_default = player_anim.slice(0, 1);
-        player.anim_up = player_anim.slice(1, 5);
-        player.anim_down = player_anim.slice(5, 9);
-        player.anim_left = player_anim.slice(9, 13);
-        player.anim_right = player_anim.slice(13, 17);
+	player.anim_default 	= player_anim.slice(0, 1);
+        player.anim_up 		= player_anim.slice(1, 5);
+        player.anim_down 	= player_anim.slice(5, 9);
+        player.anim_left 	= player_anim.slice(9, 13);
+        player.anim_right 	= player_anim.slice(13, 17);
 
         //	Set the player to idle
         player.setImage(player.anim_default.next());
@@ -63,6 +64,7 @@ function Game(){
 	var speed = 1.5;
 	
 	//	Player movement
+	//	Hmmm, need to find out how to detect the player X and Y
 	if(jaws.pressed("left"))  { player.move(-(speed),0);  player.setImage(player.anim_left.next()) }
         if(jaws.pressed("right")) { player.move(speed,0);   player.setImage(player.anim_right.next()) }
         if(jaws.pressed("up"))    { player.move(0, -(speed); player.setImage(player.anim_up.next()) }
