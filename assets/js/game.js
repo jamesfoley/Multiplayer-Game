@@ -65,10 +65,37 @@ function Game(){
 	
 	//	Player movement
 	//	Hmmm, need to find out how to detect the player X and Y
-	if(jaws.pressed("left"))  { player.move(-(speed),0);  player.setImage(player.anim_left.next()) }
-        if(jaws.pressed("right")) { player.move(speed,0);   player.setImage(player.anim_right.next()) }
-        if(jaws.pressed("up"))    { player.move(0, -(speed); player.setImage(player.anim_up.next()) }
-        if(jaws.pressed("down"))  { player.move(0, speed);  player.setImage(player.anim_down.next()) }
+	if(jaws.pressed("left"))  { 
+		player.move(-(speed),0); 
+	
+		collision_det();
+
+		player.setImage(player.anim_left.next()) 
+	}
+
+        if(jaws.pressed("right")) { 
+		player.move(speed,0);   
+
+		collision_det();
+
+		player.setImage(player.anim_right.next()) 
+	}
+
+        if(jaws.pressed("up"))    { 
+		player.move(0, -(speed); 
+
+		collision_det();
+
+		player.setImage(player.anim_up.next()) 
+	}
+
+        if(jaws.pressed("down"))  {
+		player.move(0, speed);  
+		
+		collision_det();
+
+		player.setImage(player.anim_down.next()) 
+	}
 
         //	Make sure we center the view around the player
         viewport.centerAround(player);
@@ -88,5 +115,22 @@ function Game(){
     	viewport.draw(player);
 
     }
+
+}
+
+function collision_det(x, y, speed) {
+	
+	// Little bit'o collision detection for borders
+	if(x < 0 && y > 0) {
+		player.move(x + speed, y);
+	} elseif(x < 0 && y < 0)
+		player.move(x + speed, y + speed);
+	} elseif(x > 668 && y > 668) {
+		player.move(668, 668);
+	} elseif(x > 668 && y < 668) {
+		player.move(x - speed, y);
+	} elseif(x < 668 && y > 668) {
+		player.move(x, y - speed);
+	}
 
 }
