@@ -70,7 +70,8 @@ function Game(){
 	
 		collision_det(player.x, player.y, speed);
 
-		player.setImage(player.anim_left.next()) 
+		player.setImage(player.anim_left.next());
+		log('x: ' + player.x + ', y: ' + player.y);
 	}
 
         if(jaws.pressed("right")) { 
@@ -78,7 +79,8 @@ function Game(){
 
 		collision_det(player.x, player.y, speed);
 
-		player.setImage(player.anim_right.next()) 
+		player.setImage(player.anim_right.next());
+		log('x: ' + player.x + ', y: ' + player.y);
 	}
 
         if(jaws.pressed("up"))    { 
@@ -86,7 +88,8 @@ function Game(){
 
 		collision_det(player.x, player.y, speed);
 
-		player.setImage(player.anim_up.next()) 
+		player.setImage(player.anim_up.next());
+		log('x: ' + player.x + ', y: ' + player.y);
 	}
 
         if(jaws.pressed("down"))  {
@@ -94,7 +97,8 @@ function Game(){
 		
 		collision_det(player.x, player.y, speed);
 
-		player.setImage(player.anim_down.next()) 
+		player.setImage(player.anim_down.next());
+		log('x: ' + player.x + ', y: ' + player.y);
 	}
 
         //	Make sure we center the view around the player
@@ -132,5 +136,13 @@ function collision_det(x, y, speed) {
 	} elseif(x < 668 && y > 668) {
 		player.move(x, y - speed);
 	}
+
+}
+
+function log(message) {
+	
+	var text = this.findElementByClass('game_log');
+
+	text.append(message);
 
 }
