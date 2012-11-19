@@ -8,6 +8,9 @@ function Game(){
 	var tile_map;
 	var player;
 
+	//	Set a default speed for the player
+	var speed = 1.5;
+
 	//	Called once when a game state is activated. Use it for one-time setup code.
 	this.setup = function() {
 
@@ -59,16 +62,12 @@ function Game(){
 
 	//	Called each game tick with your specified FPS. Logic goes here.
 	this.update = function() {
-
-	//	Set a default speed for the player
-	var speed = 1.5;
 	
-	//	Player movement
-	//	Hmmm, need to find out how to detect the player X and Y
+	//	Player movement + border collision
 	if(jaws.pressed("left"))  { 
 		player.move(-(speed),0); 
 		
-		var player_coords = border_collision_det(player.x, player.y, speed);
+		var player_coords = border_collision_det(player.x, player.y, width*32, height*32, speed);
 
 		if(player_coords > player.x)
 			player.x = (player.x + (speed * 2));
