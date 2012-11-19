@@ -151,11 +151,3 @@ function border_collision_det(x, y, max_x, max_y, speed) {
 	}
 
 }
-
-function log(message) {
-	
-	//var text = this.findElementByClass('game_log');
-
-	//text.append(message);
-
-}
