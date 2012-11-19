@@ -29,6 +29,7 @@ function Game(){
 
 				//	Push a grass sprite into this cell
 				grass.push(new Sprite({image: "/assets/img/textures/grass.png", x: i*32, y: i2*32}));
+			
 			}
         }
 
@@ -38,9 +39,11 @@ function Game(){
         //	Create the player
         player = new jaws.Sprite({x:10, y:10, scale: 1, anchor: "center"});
 
-		//	Create player animation
-		var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
-        player.anim_default = player_anim.slice(0, 1);
+	//	Create player animation
+	var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
+        
+	// 	Actual player animation
+	player.anim_default = player_anim.slice(0, 1);
         player.anim_up = player_anim.slice(1, 5);
         player.anim_down = player_anim.slice(5, 9);
         player.anim_left = player_anim.slice(9, 13);
@@ -56,11 +59,14 @@ function Game(){
 	//	Called each game tick with your specified FPS. Logic goes here.
 	this.update = function() {
 
-		//	Player movement keys
-		if(jaws.pressed("left"))  { player.move(-1.5,0);  player.setImage(player.anim_left.next()) }
-        if(jaws.pressed("right")) { player.move(1.5,0);   player.setImage(player.anim_right.next()) }
-        if(jaws.pressed("up"))    { player.move(0, -1.5); player.setImage(player.anim_up.next()) }
-        if(jaws.pressed("down"))  { player.move(0, 1.5);  player.setImage(player.anim_down.next()) }
+	//	Set a default speed for the player
+	var speed = 1.5;
+	
+	//	Player movement
+	if(jaws.pressed("left"))  { player.move(-(speed),0);  player.setImage(player.anim_left.next()) }
+        if(jaws.pressed("right")) { player.move(speed,0);   player.setImage(player.anim_right.next()) }
+        if(jaws.pressed("up"))    { player.move(0, -(speed); player.setImage(player.anim_up.next()) }
+        if(jaws.pressed("down"))  { player.move(0, speed);  player.setImage(player.anim_down.next()) }
 
         //	Make sure we center the view around the player
         viewport.centerAround(player);
