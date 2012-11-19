@@ -8,6 +8,9 @@ function Game(){
 	var tile_map;
 	var player;
 
+	//	Set a default speed for the player
+	var speed = 1.5;
+
 	//	Called once when a game state is activated. Use it for one-time setup code.
 	this.setup = function() {
 
@@ -29,6 +32,7 @@ function Game(){
 
 				//	Push a grass sprite into this cell
 				grass.push(new Sprite({image: "/assets/img/textures/grass.png", x: i*32, y: i2*32}));
+			
 			}
         }
 
@@ -36,15 +40,18 @@ function Game(){
         tile_map.push(grass);
 
         //	Create the player
-        player = new jaws.Sprite({x:10, y:10, scale: 1, anchor: "center"});
+	//	Defaulting the player in by 32 pixels, so they're not outside the viewport
+        player = new jaws.Sprite({x:32, y:32, scale: 1, anchor: "center"});
 
-		//	Create player animation
-		var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
-        player.anim_default = player_anim.slice(0, 1);
-        player.anim_up = player_anim.slice(1, 5);
-        player.anim_down = player_anim.slice(5, 9);
-        player.anim_left = player_anim.slice(9, 13);
-        player.anim_right = player_anim.slice(13, 17);
+	//	Create player animation
+	var player_anim = new jaws.Animation({sprite_sheet: "/assets/img/players/default.png", frame_size: [27,32], frame_duration: 100});
+        
+	// 	Actual player animation
+	player.anim_default 	= player_anim.slice(0, 1);
+        player.anim_up 		= player_anim.slice(1, 5);
+        player.anim_down 	= player_anim.slice(5, 9);
+        player.anim_left 	= player_anim.slice(9, 13);
+        player.anim_right 	= player_anim.slice(13, 17);
 
         //	Set the player to idle
         player.setImage(player.anim_default.next());
@@ -55,12 +62,55 @@ function Game(){
 
 	//	Called each game tick with your specified FPS. Logic goes here.
 	this.update = function() {
+	
+	//	Player movement + border collision
+	if(jaws.pressed("left"))  { 
+		player.move(-(speed),0); 
+		
+		var player_coords = border_collision_det(player.x, player.y, width*32, height*32, speed);
 
-		//	Player movement keys
-		if(jaws.pressed("left"))  { player.move(-1.5,0);  player.setImage(player.anim_left.next()) }
-        if(jaws.pressed("right")) { player.move(1.5,0);   player.setImage(player.anim_right.next()) }
-        if(jaws.pressed("up"))    { player.move(0, -1.5); player.setImage(player.anim_up.next()) }
-        if(jaws.pressed("down"))  { player.move(0, 1.5);  player.setImage(player.anim_down.next()) }
+		if(player_coords > player.x)
+			player.x = (player.x + (speed * 2));
+
+		player.setImage(player.anim_left.next());
+
+	}
+
+        if(jaws.pressed("right")) { 
+		player.move(speed, 0);   
+
+		var player_coords = border_collision_det(player.x, player.y, width*32, height*32, speed);
+
+		if(player_coords < player.x)
+			player.x = (player.x - (speed * 2));
+
+		player.setImage(player.anim_right.next());
+
+	}
+
+        if(jaws.pressed("up"))    { 
+		player.move(0, -(speed)); 
+
+		var player_coords = border_collision_det(player.x, player.y, width*32, height*32, speed);
+
+		if(player_coords > player.y)
+			player.y = (player.y + (speed * 2));
+
+		player.setImage(player.anim_up.next());
+
+	}
+
+        if(jaws.pressed("down"))  {
+		player.move(0, speed);  
+
+		var player_coords = border_collision_det(player.x, player.y, width*32, height*32, speed);
+		
+		if(player_coords < player.y)
+			player.y = (player.y - (speed * 2));
+
+		player.setImage(player.anim_down.next());
+
+	}
 
         //	Make sure we center the view around the player
         viewport.centerAround(player);
@@ -80,5 +130,24 @@ function Game(){
     	viewport.draw(player);
 
     }
+
+}
+
+function border_collision_det(x, y, max_x, max_y, speed) {
+	
+	// Little bit'o collision detection for borders
+	if(x < 16) {
+		x = x + speed;
+		return x;
+	} else if(y < 16) {
+		y = y + speed;
+		return y;
+	} else if(x > (max_x - 16)) {
+		x = x - speed;
+		return x;
+	} else if(y > (max_y - 16)) {
+		y = y - speed;
+		return y;
+	}
 
 }
